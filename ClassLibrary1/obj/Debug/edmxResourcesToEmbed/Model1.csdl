@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OdcTaskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Skills" Relationship="Self.Courseskills" FromRole="Course" ToRole="Skill" />
+    <NavigationProperty Name="Students" Relationship="Self.StudentCourses" FromRole="Course" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillId" />
+    </Key>
+    <Property Name="SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SKillName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.Courseskills" FromRole="Skill" ToRole="Course" />
+    <NavigationProperty Name="Students" Relationship="Self.StudentSkills" FromRole="Skill" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.StudentCourses" FromRole="Student" ToRole="Course" />
+    <NavigationProperty Name="Skills" Relationship="Self.StudentSkills" FromRole="Student" ToRole="Skill" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="Courseskills">
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+  </Association>
+  <Association Name="StudentCourses">
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+  </Association>
+  <Association Name="StudentSkills">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="OdcTaskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Skills" EntityType="Self.Skill" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="Courseskills" Association="Self.Courseskills">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Skill" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="StudentCourses" Association="Self.StudentCourses">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="StudentSkills" Association="Self.StudentSkills">
+      <End Role="Skill" EntitySet="Skills" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

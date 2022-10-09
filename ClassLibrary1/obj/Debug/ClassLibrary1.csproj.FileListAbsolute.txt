@@ -1,0 +1,12 @@
+D:\Odctask\Task\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
+D:\Odctask\Task\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+D:\Odctask\Task\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+D:\Odctask\Task\ClassLibrary1\bin\Debug\EntityFramework.dll
+D:\Odctask\Task\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.dll
+D:\Odctask\Task\ClassLibrary1\bin\Debug\EntityFramework.xml
+D:\Odctask\Task\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.xml
+D:\Odctask\Task\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.AssemblyReference.cache
+D:\Odctask\Task\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.CoreCompileInputs.cache
+D:\Odctask\Task\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.CopyComplete
+D:\Odctask\Task\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+D:\Odctask\Task\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

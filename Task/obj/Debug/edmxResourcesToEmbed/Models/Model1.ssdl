@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Courseskills">
+    <Key>
+      <PropertyRef Name="SkillId" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="SkillId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillId" />
+    </Key>
+    <Property Name="SkillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="StudentCourses">
+    <Key>
+      <PropertyRef Name="StudentId" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="Project" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentSkills">
+    <Key>
+      <PropertyRef Name="StudentId" />
+      <PropertyRef Name="SkillId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="SkillId" Type="int" Nullable="false" />
+    <Property Name="quiz" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Courseski__Cours__31EC6D26">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Courseskills" Type="Self.Courseskills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Courseskills">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Courseski__Skill__32E0915F">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+    <End Role="Courseskills" Type="Self.Courseskills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillId" />
+      </Principal>
+      <Dependent Role="Courseskills">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentCo__Cours__2E1BDC42">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="StudentCourses">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentCo__Stude__2F10007B">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentCourses" Type="Self.StudentCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentCourses">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentSk__Skill__2A4B4B5E">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+    <End Role="StudentSkills" Type="Self.StudentSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="SkillId" />
+      </Principal>
+      <Dependent Role="StudentSkills">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentSk__Stude__2B3F6F97">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentSkills" Type="Self.StudentSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentSkills">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectModelStoreContainer">
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courseskills" EntityType="Self.Courseskills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentCourses" EntityType="Self.StudentCourses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentSkills" EntityType="Self.StudentSkills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Courseski__Cours__31EC6D26" Association="Self.FK__Courseski__Cours__31EC6D26">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Courseskills" EntitySet="Courseskills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Courseski__Skill__32E0915F" Association="Self.FK__Courseski__Skill__32E0915F">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="Courseskills" EntitySet="Courseskills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentCo__Cours__2E1BDC42" Association="Self.FK__StudentCo__Cours__2E1BDC42">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="StudentCourses" EntitySet="StudentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentCo__Stude__2F10007B" Association="Self.FK__StudentCo__Stude__2F10007B">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentCourses" EntitySet="StudentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentSk__Skill__2A4B4B5E" Association="Self.FK__StudentSk__Skill__2A4B4B5E">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="StudentSkills" EntitySet="StudentSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentSk__Stude__2B3F6F97" Association="Self.FK__StudentSk__Stude__2B3F6F97">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentSkills" EntitySet="StudentSkills" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
