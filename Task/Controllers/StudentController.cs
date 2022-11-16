@@ -115,9 +115,9 @@ namespace Task.Controllers
             int[] p = new int[1];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                var a = Convert.ToInt32(dt.Rows[i]["project"]);
+                var Grade = Convert.ToInt32(dt.Rows[i]["project"]);
                 var id = Convert.ToInt32(dt.Rows[i]["StudentId"]);
-                if (a >= 70)
+                if (Grade >= 70)
                 {
                     Students.Add(GetProfile(id));
                 }
@@ -194,7 +194,7 @@ namespace Task.Controllers
             }
             for (int i = 0; i < Students.Count; i++)
             {
-                if (!Students[i].StudentCourses.Contains("Css"))
+                if (!Students[i].StudentCourses.Contains(Courseprerequisite))
                 {
                     recommmendedStudents.Add(Students[i]);
                 }
